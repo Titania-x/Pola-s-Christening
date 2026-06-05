@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pola's Christening</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(180deg,#fff8fb,#fffef5,#f5fff4);
+overflow-x:hidden;
+color:#555;
+}
+
+.floating{
+position:fixed;
+top:-50px;
+font-size:25px;
+animation:fall linear infinite;
+pointer-events:none;
+z-index:1;
+}
+
+@keyframes fall{
+to{
+transform:translateY(120vh) rotate(360deg);
+}
+}
+
+#cover{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ffdbe8,#fff8cc,#dff8d8);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+cursor:pointer;
+transition:1s;
+}
+
+#cover.hide{
+opacity:0;
+visibility:hidden;
+}
+
+#cover h1{
+font-family:'Great Vibes',cursive;
+font-size:4rem;
+color:#d76f9b;
+}
+
+#cover p{
+margin-top:10px;
+}
+
+.open-btn{
+margin-top:20px;
+padding:15px 35px;
+border:none;
+border-radius:50px;
+background:#d76f9b;
+color:white;
+font-size:1rem;
+cursor:pointer;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px 20px;
+position:relative;
+z-index:2;
+}
+
+.card{
+background:rgba(255,255,255,.95);
+padding:40px;
+border-radius:30px;
+max-width:800px;
+box-shadow:0 15px 40px rgba(0,0,0,.1);
+}
+
+.photo{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:8px solid white;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.title{
+font-family:'Great Vibes',cursive;
+font-size:4rem;
+color:#d76f9b;
+margin-top:15px;
+}
+
+.subtitle{
+font-size:1.2rem;
+margin-top:10px;
+color:#6f9466;
+}
+
+.info{
+margin-top:25px;
+line-height:2;
+font-size:1.1rem;
+}
+
+.colors{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:25px;
+}
+
+.color{
+width:60px;
+height:60px;
+border-radius:50%;
+}
+
+.pink{background:#ffd2e4;}
+.yellow{background:#fff3a8;}
+.green{background:#dff8d8;}
+.white{
+background:white;
+border:2px solid #ddd;
+}
+
+.countdown{
+margin-top:30px;
+font-size:1.4rem;
+font-weight:600;
+color:#d76f9b;
+}
+
+.map-btn{
+display:inline-block;
+margin-top:25px;
+padding:15px 30px;
+background:#d76f9b;
+color:white;
+text-decoration:none;
+border-radius:50px;
+transition:.3s;
+}
+
+.map-btn:hover{
+transform:scale(1.05);
+}
+
+.sparkle{
+position:fixed;
+font-size:24px;
+pointer-events:none;
+animation:pop .8s forwards;
+}
+
+@keyframes pop{
+0%{
+opacity:1;
+transform:scale(.3);
+}
+100%{
+opacity:0;
+transform:translateY(-80px) scale(2);
+}
+}
+
+.footer{
+text-align:center;
+padding:40px;
+font-size:1rem;
+}
+
+@media(max-width:768px){
+
+.title{
+font-size:3rem;
+}
+
+.photo{
+width:180px;
+height:180px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="cover">
+<h1>Pola's Christening</h1>
+<p>Coquette Garden Celebration</p>
+<button class="open-btn" onclick="openInvite()">Open Invitation 🎀</button>
+</div>
+
+<div class="hero">
+
+<div class="card">
+
+<img src="pola.jpg" class="photo" alt="Pola">
+
+<div class="title">Pola's Christening</div>
+
+<div class="subtitle">
+Coquette Garden Celebration
+</div>
+
+<div class="info">
+<strong>Date:</strong> August 31, 2026<br>
+<strong>Theme:</strong> Coquette Garden<br>
+<strong>Venue:</strong> Pesqueria de Tiaong<br>
+<strong>Church:</strong> Nuestra Senora<br>
+</div>
+
+<div class="colors">
+<div class="color pink"></div>
+<div class="color yellow"></div>
+<div class="color green"></div>
+<div class="color white"></div>
+</div>
+
+<div id="countdown" class="countdown"></div>
+
+<a class="map-btn"
+href="https://maps.google.com/?q=Pesqueria+de+Tiaong"
+target="_blank">
+View Map 📍 </a>
+
+</div>
+
+</div>
+
+<div class="footer">
+🌸 We can't wait to celebrate with you 🌸
+</div>
+
+<script>
+
+function openInvite(){
+document.getElementById("cover").classList.add("hide");
+}
+
+const targetDate = new Date("August 31, 2026 00:00:00").getTime();
+
+setInterval(()=>{
+
+const now = new Date().getTime();
+const distance = targetDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+"⏳ " + days + " Days " +
+hours + " Hours " +
+minutes + " Minutes " +
+seconds + " Seconds";
+
+},1000);
+
+for(let i=0;i<20;i++){
+
+let flower=document.createElement("div");
+flower.className="floating";
+flower.innerHTML=Math.random()>.5?"🌸":"🎀";
+
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=(8+Math.random()*12)+"s";
+flower.style.opacity=Math.random();
+
+document.body.appendChild(flower);
+}
+
+document.addEventListener("click",(e)=>{
+
+for(let i=0;i<6;i++){
+
+let s=document.createElement("div");
+
+s.className="sparkle";
+
+s.innerHTML=Math.random()>.5?"💖":"✨";
+
+s.style.left=e.clientX+"px";
+s.style.top=e.clientY+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>{
+s.remove();
+},800);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
